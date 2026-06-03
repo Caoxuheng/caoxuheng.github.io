@@ -1,203 +1,623 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Xuheng Cao</title>
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
-    <script type="text/javascript" src="js/script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Academic homepage of Xuheng Cao." />
+  <title>Xuheng Cao | Academic Homepage</title>
+
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #5f6b7a;
+      --primary: #1f5fa8;
+      --primary-dark: #154a84;
+      --line: #e5edf6;
+      --soft-blue: #eef6ff;
+      --accent: #f97316;
+      --shadow: 0 16px 40px rgba(31, 95, 168, 0.10);
+      --radius: 18px;
+      --max-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(31, 95, 168, 0.12), transparent 35%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, #ffffff 100%);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    .page {
+      width: min(var(--max-width), calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.86);
+      border-bottom: 1px solid rgba(229, 237, 246, 0.9);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 64px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: var(--soft-blue);
+      text-decoration: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 34px;
+      align-items: center;
+      padding: 58px 0 34px;
+    }
+
+    .portrait-wrap {
+      position: relative;
+      width: 210px;
+      max-width: 100%;
+    }
+
+    .portrait-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 16px -14px -14px 16px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(31, 95, 168, 0.20), rgba(249, 115, 22, 0.12));
+      z-index: 0;
+    }
+
+    .portrait {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      aspect-ratio: 172 / 238;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 6px solid #ffffff;
+      box-shadow: var(--shadow);
+      background: #fff;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.15rem, 5vw, 3.45rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .cn-name {
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0;
+    }
+
+    .role {
+      margin: 12px 0 18px;
+      color: var(--muted);
+      font-size: 1.12rem;
+      font-weight: 600;
+    }
+
+    .affiliations {
+      display: grid;
+      gap: 8px;
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .affiliations li {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: baseline;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 88px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #edf4fb;
+      color: var(--primary-dark);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-weight: 650;
+      box-shadow: 0 6px 18px rgba(31, 95, 168, 0.07);
+    }
+
+    .button:hover {
+      color: var(--primary-dark);
+      border-color: rgba(31, 95, 168, 0.25);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .section {
+      padding: 24px 0;
+    }
+
+    .section-card {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 10px 28px rgba(31, 95, 168, 0.06);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      font-size: 1.45rem;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 5px;
+      height: 24px;
+      border-radius: 99px;
+      background: linear-gradient(180deg, var(--primary), var(--accent));
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .package-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+    }
+
+    .package-card h3 {
+      margin: 0;
+      font-size: 1.06rem;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .reviewer-list {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .reviewer-list i {
+      color: var(--text);
+      font-style: italic;
+      font-weight: 650;
+    }
+
+    .year-block {
+      margin-top: 22px;
+    }
+
+    .year {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 12px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 13px;
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: pub;
+    }
+
+    .pub {
+      counter-increment: pub;
+      position: relative;
+      padding: 14px 16px 14px 56px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: #ffffff;
+    }
+
+    .pub::before {
+      content: "[" counter(pub) "]";
+      position: absolute;
+      left: 16px;
+      top: 14px;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .pub-title {
+      font-weight: 650;
+    }
+
+    .venue {
+      font-weight: 800;
+    }
+
+    .links {
+      white-space: nowrap;
+      color: var(--muted);
+    }
+
+    .highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 6px;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    footer {
+      padding: 32px 0 42px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 38px;
+      }
+
+      .portrait-wrap {
+        width: 178px;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .section-card {
+        padding: 22px;
+      }
+
+      .pub {
+        padding-left: 48px;
+      }
+    }
+
+    @media print {
+      .topbar {
+        position: static;
+      }
+
+      body {
+        background: #ffffff;
+      }
+
+      .section-card,
+      .pub,
+      .package-card {
+        box-shadow: none;
+      }
+
+      a {
+        color: #000000;
+      }
+    }
+  </style>
 </head>
+
 <body>
-   <table class="TableNormal" border="0" cellspacing="5" cellpadding="0" width="90%" style="width:90.46%;mso-cellspacing:1.5pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
- <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes;height:214.05pt">
-  <td width="10%" valign="top" style="width:10.98%;padding:.75pt .75pt .75pt .75pt;height:214.05pt">
-  <p style="margin:0cm"><span lang="EN-US" style="mso-no-proof:yes"><img width="172" height="238" src="https://github.com/Caoxuheng/imgs/blob/main/SelfPhoto.jpg?raw=true" v:shapes="_x56fe__x7247__x0020_1"></span><span lang="EN-US" style="font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p></span></p>
-  </td>
-  <td width="88%" valign="top" style="width:88.66%;padding:.75pt .75pt .75pt .75pt;height:214.05pt">
-  <p style="margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;margin-left:-18.0pt;mso-para-margin-top:6.0pt;mso-para-margin-right:0cm;mso-para-margin-bottom:0cm;mso-para-margin-left:-1.5gd;text-align:justify;text-justify:inter-ideograph;
-  text-indent:27.55pt;mso-char-indent-count:1.96;tab-stops:277.55pt">
-  <b>
-      <span lang="EN-US" style="font-size:14.0pt;mso-bidi-font-size:12.0pt">Xuheng Cao (</span>
-      </b>
-      <b>
-          <span style="font-size:14.0pt;mso-bidi-font-size:12.0pt;font-family:SimSun;mso-ascii-font-family:&quot;Times New Roman&quot;;mso-hansi-font-family:&quot;Times New Roman&quot;">曹栩珩</span>
-          </b>
-          <b>
-              <span lang="EN-US" style="font-size:14.0pt;mso-bidi-font-size:12.0pt">
-                  )
-      <o:p>
-  </o:p>
-  </span>
-  </b>
-  </p>
+  <header class="topbar">
+    <nav class="page nav" aria-label="Main navigation">
+      <a class="brand" href="#">Xuheng Cao</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#reviewer">Peer Reviewer</a></li>
+        <li><a href="#publications">Publications</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <p style="margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;margin-left:
-  -18.0pt;mso-para-margin-top:6.0pt;mso-para-margin-right:0cm;mso-para-margin-bottom:
-  0cm;mso-para-margin-left:-1.5gd;text-align:justify;text-justify:inter-ideograph;
-  text-indent:27.55pt;mso-char-indent-count:1.96;tab-stops:277.55pt">
-  <b>
-      <span lang="EN-US" style="font-size:14.0pt;mso-bidi-font-size:12.0pt">
-          Doctoral Candidate
-      </span>
-  </b>
-  </p>
-  
-  <table class="TableNormal" border="0" cellspacing="5" cellpadding="0" width="500" style="width:500pt;mso-cellspacing:1.5pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
-   <tbody>
-       <tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes;height:142.2pt">
-    <td width="398" style="width:298.4pt;padding:0cm 0cm 0cm 0cm;height:142.2pt">
-    <p class="MsoNormal" style="margin-left:-18.0pt;mso-para-margin-left:-1.5gd;text-indent:28.0pt;mso-char-indent-count:2.0;tab-stops:277.55pt"><u><span lang="EN-US" style="font-size:14.0pt;mso-bidi-font-size:12.0pt">[<a href="https://ipoe.tongji.edu.cn/en/index.htm">IPOE</a>]
-   <a href="https://www.tongji.edu.cn">Tongji University, China
-    </a>
-    <o:p>
-        </o:p>
-        </span>
-        </u>
-    </p>
+  <main class="page">
+    <section id="about" class="hero">
+      <div class="portrait-wrap">
+        <img
+          class="portrait"
+          src="https://github.com/Caoxuheng/imgs/blob/main/SelfPhoto.jpg?raw=true"
+          alt="Portrait of Xuheng Cao"
+          width="172"
+          height="238"
+        />
+      </div>
 
-        <p class="MsoNormal" style="margin-left:-18.0pt;mso-para-margin-left:-1.5gd;text-indent:28.0pt;mso-char-indent-count:2.0;tab-stops:277.55pt"><u><span lang="EN-US" style="font-size:14.0pt;mso-bidi-font-size:12.0pt">[<a href="https://en.nim.ac.cn/node/217">Joint Laboratory</a>]<a href="https://en.nim.ac.cn/">National Institute of Metrology, China
-    </a>
-    <o:p>
-        </o:p>
-        </span>
-        </u>
-    </p>
+      <div>
+        <span class="eyebrow">Academic Homepage</span>
+        <h1>Xuheng Cao <span class="cn-name">曹栩珩</span></h1>
+        <p class="role">Doctoral Candidate</p>
 
+        <ul class="affiliations">
+          <li>
+            <span class="tag">IPOE</span>
+            <a href="https://ipoe.tongji.edu.cn/en/index.htm">IPOE</a>,
+            <a href="https://www.tongji.edu.cn">Tongji University, China</a>
+          </li>
+          <li>
+            <span class="tag">Joint Lab</span>
+            <a href="https://en.nim.ac.cn/node/217">Joint Laboratory</a>,
+            <a href="https://en.nim.ac.cn/">National Institute of Metrology, China</a>
+          </li>
+        </ul>
 
+        <div class="contact-row" aria-label="Contact information">
+          <a class="button" href="mailto:caoxuheng@tongji.edu.cn">caoxuheng@tongji.edu.cn</a>
+          <a class="button" href="mailto:caoxuhengcn@gmail.com">caoxuhengcn@gmail.com</a>
+          <a class="button" href="https://github.com/Caoxuheng">GitHub</a>
+        </div>
+      </div>
+    </section>
 
-    <p style="margin-top:5.0pt;margin-right:0cm;margin-bottom:0cm;margin-left:-18.0pt;mso-para-margin-top:5.0pt;mso-para-margin-right:0cm;mso-para-margin-bottom:0cm;mso-para-margin-left:-1.5gd;text-indent:28.0pt;mso-char-indent-count:2.0;tab-stops:277.55pt">
-    <span lang="EN-US" style="font-size:14.0pt;mso-bidi-font-size:12.0pt">
-        Email: caoxuheng@tongji.edu.cn
-    <o:p>
-        </o:p>
-        </span>
-    </p>
-        <p style="margin-top:5.0pt;margin-right:auto;margin-bottom:0cm;margin-left:25.0pt;mso-para-margin-top:5.0pt;mso-para-margin-right:0cm;mso-para-margin-bottom:0cm;mso-para-margin-left:-1.5gd;text-indent:28.0pt;mso-char-indent-count:2.0;tab-stops:277.55pt">
-    <span lang="EN-US" style="font-size:14.0pt;mso-bidi-font-size:12.0pt">
-        caoxuhengcn@gmail.com
-    <o:p>
-        </o:p>
-        </span>
-    </p>
-    <p class="MsoNormal" style="margin-left:-18.0pt;mso-para-margin-left:-1.5gd;tab-stops:277.55pt"><span lang="EN-US">&nbsp;
-        </span>
+    <section id="packages" class="section">
+      <div class="section-card">
+        <h2 class="section-title">Packages</h2>
+
+        <div class="grid-2">
+          <article class="package-card">
+            <h3>Imgvision</h3>
+            <div class="badge-row">
+              <a href="https://pepy.tech/project/imgvision" rel="nofollow">
+                <img src="https://static.pepy.tech/badge/imgvision" alt="Imgvision downloads badge" />
+              </a>
+            </div>
+          </article>
+
+          <article class="package-card">
+            <h3>paddleiv</h3>
+            <div class="badge-row">
+              <a href="https://pepy.tech/project/paddleiv" rel="nofollow">
+                <img src="https://static.pepy.tech/badge/paddleiv" alt="paddleiv downloads badge" />
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviewer" class="section">
+      <div class="section-card">
+        <h2 class="section-title">Peer Reviewer</h2>
+        <p class="reviewer-list">
+          <i>Optica</i>; <i>IEEE TGRS</i>; <i>IEEE TNNLS</i>; <i>IEEE TPAMI</i>;
+          <i>IEEE TIP</i>; <i>IEEE TII</i>; <i>IEEE TCSVT</i>; <i>IEEE TCYB</i>;
+          <i>IEEE TMM</i>; <i>Information Fusion</i>.
         </p>
+      </div>
+    </section>
 
-    <p class="MsoNormal" style="margin-left:-18.0pt;mso-para-margin-left:-1.5gd;
-    tab-stops:277.55pt">
-    <span lang="EN-US">
-        <o:p>
-            &nbsp;
-    </o:p>
-    </span>
-    </p>
-    </td>
-   </tr>
-  </tbody>
-  </table>
-  </td>
- </tr>
-</tbody>
-</table>
-<p>
+    <section id="publications" class="section">
+      <div class="section-card">
+        <h2 class="section-title">Publications</h2>
 
+        <div class="year-block">
+          <span class="year">Manuscripts under review</span>
+          <ol class="pub-list">
+            <li class="pub">
+              <b>X. Cao</b>, Q. Gao, J. Tao, J. Song, and X. Hao*,
+              <span class="pub-title">“AI-enabled Infrared Snapshot Thermometry for SI-traceable Wafer Temperature Mapping on Electrostatic Chucks,”</span>
+              <span class="venue">Light: Advanced Manufacturing</span>, 2025. Under Review.
+            </li>
+            <li class="pub">
+              <b>X. Cao</b>, X. Wang, J. Wang, Y. Lian, X. Cheng, and X. Hao*,
+              <span class="pub-title">“Kernel-Free Semi-Blind HSI–MSI Fusion: A Discrete-continuous MAP Formulation via Top-K Angular Matching and Gain Refinement,”</span>
+              <span class="venue">International Journal of Computer Vision</span>, 2025. Under Review.
+            </li>
+          </ol>
+        </div>
 
-<h2>Package</h2>    
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="83" height="20" role="img" aria-label="Imgvision"><title>Imgvision</title><linearGradient id="s" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="r"><rect width="83" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#r)"><rect width="0" height="20" fill="#555"/><rect x="0" width="83" height="20" fill="black"/><rect width="83" height="20" fill="url(#s)"/></g><g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="110"><image x="5" y="3" width="14" height="14" xlink:href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJ3aGl0ZXNtb2tlIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+TnVtUHk8L3RpdGxlPjxwYXRoIGQ9Ik0xMC4zMTUgNC44NzZMNi4zMDQ4IDIuODUxN2wtNC40MDEgMi4xOTY1IDQuMTE4NiAyLjA2ODN6bTEuODM4MS45Mjc3bDQuMjA0NSAyLjEyMjMtNC4zNjIyIDIuMTkwNi00LjEyNS0yLjA3MTh6bTUuNjE1My0yLjkyMTNsNC4zMTkzIDIuMTY1OC0zLjg2MyAxLjk0MDItNC4yMTMxLTIuMTI1MnptLTEuODU5LS45MzI5TDEyLjAyMSAwIDguMTc0MiAxLjkxOTNsNC4wMDY4IDIuMDIwOHptLTMuMDQwMSAxNi43NDQzVjI0bDQuNzEwNy0yLjM1MDctLjAwNTMtNS4zMDg1em00LjcwMzctNC4yMDU3bC0uMDA1Mi01LjI1MjgtNC42OTg1IDIuMzM1NnY1LjI1NDZ6bTUuNjU1My0uOTg0NXY1LjMyN2wtNC4wMTc4IDIuMDA1Mi0uMDAyOS01LjMwMjh6bTAtMS44NjI2VjYuNDIxNGwtNC4wMjUzIDIuMDAxLjAwMzQgNS4yNjMzek0xMS4yMDYyIDExLjU3MUw4LjAzMzMgOS45NzU2djYuODk1cy0zLjg4MDQtOC4yNTY0LTQuMjM5OS04Ljk5OGMtLjA0NjMtLjA5NTctLjIzNzEtLjIwMDctLjI4NTgtLjIyNjJDMi44MTE4IDcuMjgxMi43NzMgNi4yNDg1Ljc3MyA2LjI0ODVWMTguNDNsMi44MjA0IDEuNTA3NnYtNi4zNjc0czMuODM5MiA3LjM3NzUgMy44NzggNy40NThjLjAzODkuMDgwNy40MjQ1Ljg1ODIuODM2MiAxLjEzMTQuNTQ4NS4zNjMgMi44OTkyIDEuNzc2NiAyLjg5OTIgMS43NzY2eiIvPjwvc3ZnPg=="/><text aria-hidden="true" x="505" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="550">Imgvision</text><text x="505" y="140" transform="scale(.1)" fill="#fff" textLength="550">Imgvision</text></g></svg>
+        <div class="year-block">
+          <span class="year">2025</span>
+          <ol class="pub-list">
+            <li class="pub">
+              <b>X. Cao</b>, X. Wang, X. Dun, Y. Lian, X. Cheng, and X. Hao*,
+              <span class="pub-title">“Cross-domain-aware Deep Unfolding Transformer for Hyperspectral Image Super-resolution,”</span>
+              <span class="venue">Pattern Recognition</span>, 2025.
+              <span class="links">(<a href="https://doi.org/10.1016/j.patcog.2025.112374">Paper</a>, <a href="https://github.com/Caoxuheng/CDaFormer">Project &amp; Code</a>)</span>
+            </li>
+            <li class="pub">
+              J. Song, <b>X. Cao</b>, G. Wang, J. Zhou, R. Sima, C. Xu, and X. Hao*,
+              <span class="pub-title">“Large-area Low-temperature Vacuum Blackbody System of High Emissivity and Temperature Uniformity,”</span>
+              <span class="venue">IEEE Transactions on Instrumentation and Measurement</span>, 2025.
+              <span class="links">(<a href="https://ieeexplore.ieee.org/abstract/document/10902586">Paper</a>)</span>
+            </li>
+          </ol>
+        </div>
 
-<td align="center"> <a href="https://pepy.tech/project/imgvision" rel="nofollow"><img src="https://camo.githubusercontent.com/36aa2e83d16c8b9a44191c727974a95271ddf21d7aa6a090d2505c2154f0a3da/68747470733a2f2f7374617469632e706570792e746563682f62616467652f696d67766973696f6e" alt="Downloads" data-canonical-src="https://static.pepy.tech/badge/imgvision" style="max-width: 100%;"></a>
-</td>
-||
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="75" height="20" role="img" aria-label="paddleiv"><title>paddleiv</title><linearGradient id="s" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="r"><rect width="75" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#r)"><rect width="0" height="20" fill="#555"/><rect x="0" width="75" height="20" fill="black"/><rect width="75" height="20" fill="url(#s)"/></g><g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="110"><image x="5" y="3" width="14" height="14" xlink:href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkRERDM1IiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+UGFkZGxlPC90aXRsZT48cGF0aCBkPSJNMi4zNjMgNy45MDR2Ljg0OWEzLjk1IDMuOTUgMCAwIDEgMy42NSAyLjQyNWMuMTk4LjQ3Ni4zLjk4Ny4yOTkgMS41MDJoLjc5MWMwLTEuMDQuNDE2LTIuMDM3IDEuMTU3LTIuNzcyYTMuOTYyIDMuOTYyIDAgMCAxIDIuNzkyLTEuMTQ5VjcuOTFhMy45NTkgMy45NTkgMCAwIDEtMy42NS0yLjQyNSAzLjg5MyAzLjg5MyAwIDAgMS0uMjk5LTEuNTAyaC0uNzkxYzAgMS4wNC0uNDE2IDIuMDM3LTEuMTU3IDIuNzcyYTMuOTYgMy45NiAwIDAgMS0yLjc5MiAxLjE0OU0xMy4xMDUgMi41MUg2LjMxMlYwaDYuNzkzYzQuNzcyIDAgOC41MzIgMy43MzUgOC41MzIgOC4zMTQgMCA0LjU4LTMuNzYgOC4zMTQtOC41MzIgOC4zMTRIOS4xNTZWMjRINi4zMTJ2LTkuODgyaDYuNzkzYzMuMzE5IDAgNS42ODgtMi4zNTIgNS42ODgtNS44MDQgMC0zLjQ1MS0yLjM3LTUuODA0LTUuNjg4LTUuODA0Ii8+PC9zdmc+"/><text aria-hidden="true" x="465" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="470">paddleiv</text><text x="465" y="140" transform="scale(.1)" fill="#fff" textLength="470">paddleiv</text></g></svg>
-<td align="center"> <a href="https://pepy.tech/project/paddleiv" rel="nofollow"><img src="https://camo.githubusercontent.com/9edda907a2db2be170f588d0edee6e27389b26356c4ef15c41d5bc69a74354e0/68747470733a2f2f7374617469632e706570792e746563682f62616467652f706164646c656976" alt="Downloads" data-canonical-src="https://static.pepy.tech/badge/paddleiv" style="max-width: 100%;"></a></td>
+        <div class="year-block">
+          <span class="year">2024</span>
+          <ol class="pub-list">
+            <li class="pub">
+              <b>X. Cao</b>, Y. Lian*, K. Wang, C. Ma, and X. Xu,
+              <span class="pub-title">“Unsupervised Hybrid Network of Transformer and CNN for Blind Hyperspectral and Multispectral Image Fusion,”</span>
+              <span class="venue">IEEE Transactions on Geoscience and Remote Sensing</span>, 2024.
+              <span class="links">(<a href="https://ieeexplore.ieee.org/document/10415455">Paper</a>, <a href="https://github.com/Caoxuheng/FeafusFormer">Project &amp; Code</a>)</span>
+              <span class="highlight">🏆 Highly Cited Paper</span>
+            </li>
+            <li class="pub">
+              <b>X. Cao</b>, Y. Lian*, J. Li, Z. Liu, and K. Wang,
+              <span class="pub-title">“Unsupervised Spectral Reconstruction from RGB Images under Two Lighting Conditions,”</span>
+              <span class="venue">Optics Letters</span>, 2024.
+              <span class="links">(<a href="https://doi.org/10.1364/OL.517007">Paper</a>, <a href="https://github.com/Caoxuheng/DSR-Net">Project &amp; Code</a>)</span>
+            </li>
+            <li class="pub">
+              <b>X. Cao</b>, Y. Lian*, J. Li, K. Wang, and C. Ma,
+              <span class="pub-title">“Unsupervised Multi-level Spatio-spectral Fusion Transformer for Hyperspectral Image Super-resolution,”</span>
+              <span class="venue">Optics &amp; Laser Technology</span>, 2024.
+              <span class="links">(<a href="https://doi.org/10.1016/j.optlastec.2024.111032">Paper</a>, <a href="https://github.com/Caoxuheng/UMSFT">Project &amp; Code</a>)</span>
+            </li>
+          </ol>
+        </div>
 
+        <div class="year-block">
+          <span class="year">2023</span>
+          <ol class="pub-list">
+            <li class="pub">
+              <b>X. Cao</b>, Y. Lian*, Z. Liu, J. Wu, W. Zhang, and J. Liu,
+              <span class="pub-title">“Hyperspectral Image Super-resolution via Spectral Matching and Correction,”</span>
+              <span class="venue">Journal of the Optical Society of America A</span>, 2023.
+              <span class="links">(<a href="https://doi.org/10.1364/JOSAA.491595">Paper</a>, Project &amp; Code)</span>
+            </li>
+            <li class="pub">
+              <b>X. Cao</b>, Y. Lian*, Z. Liu, H. Zhou, B. Wang, B. Huang, and W. Zhang,
+              <span class="pub-title">“Universal High Spatial Resolution Hyperspectral Imaging using Hybrid-resolution Image Fusion,”</span>
+              <span class="venue">Optical Engineering</span>, 2023.
+              <span class="links">(<a href="https://doi.org/10.1117/1.OE.62.3.033107">Paper</a>, <a href="https://github.com/Caoxuheng/UHIF">Project &amp; Code</a>)</span>
+            </li>
+          </ol>
+        </div>
 
-<h2>Peer Reviewer</h2>
-<p style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-          <tbody><tr style="padding:0px">
-            <td style="padding:2.5%;vertical-align:left">
-        
-                <i>Optica</i> ;  
-                <i>IEEE TGRS</i> ;  
-                <i>IEEE TNNLS</i> ;  
-                <i>IEEE TPAMI</i> ;
-                <i>IEEE TIP</i> ;
-                <i>IEEE TII</i> ;
-                <i>IEEE TCSVT</i> ;
-                <i>IEEE TCYB</i> ;
-                <i>IEEE TMM</i> ; 
-                <i>Inf. Fus.</i>.
-            </td>
-          </tr>
-        </tbody></p>
+        <div class="year-block">
+          <span class="year">2022</span>
+          <ol class="pub-list">
+            <li class="pub">
+              <b>X. Cao</b>, Y. Lian*, Z. Liu, H. Zhou, B. Wang, W. Zhang, and B. Huang,
+              <span class="pub-title">“Hyperspectral Image Super-resolution via a Multi-stage Scheme without Employing Spatial Degradation,”</span>
+              <span class="venue">Optics Letters</span>, 2022.
+              <span class="links">(<a href="https://doi.org/10.1364/OL.473020">Paper</a>, <a href="https://github.com/Caoxuheng/HyMS">Project &amp; Code</a>)</span>
+            </li>
+            <li class="pub">
+              <b>X. Cao</b>, Y. Lian*, Z. Liu, H. Zhou, X. Hu, B. Huang, and W. Zhang,
+              <span class="pub-title">“Hyperspectral Image Super-resolution based on the Transfer of Both Spectra and Multi-level Features,”</span>
+              <span class="venue">Optics Letters</span>, 2022.
+              <span class="links">(<a href="https://doi.org/10.1364/OL.463160">Paper</a>, Project &amp; Code)</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<p style="margin-top:3.75pt;margin-right:0cm;margin-bottom:3.75pt;margin-left:0cm">
-    <strong><i style="mso-bidi-font-style:normal"><span lang="EN-US" style="font-size:18.0pt;mso-bidi-font-size:12.0pt;color:red">Publication:</span></i></strong><span lang="EN-US" style="font-size:16.0pt;mso-bidi-font-size:12.0pt;color:red"><o:p></o:p>
-    </span>
-    </p>
+  <footer class="page">
+    © <span id="year">2026</span> Xuheng Cao. Last updated: 2026.
+  </footer>
 
-
-
-
-<p class="MsoNormal" style="margin-bottom:5.0pt;line-height:18.0pt;mso-line-height-rule:
-exactly"><b><span lang="EN-US" style="font-size:14.0pt">2026: <o:p></o:p></span></b></p>
-
-
-<p class="MsoListParagraph" style="margin-top:0cm;margin-right:0cm;margin-bottom: 5.0pt;margin-left:21.0pt;text-indent:-21.0pt;mso-char-indent-count:0;line-height:18.0pt;mso-line-height-rule:exactly;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span lang="EN-US" style="mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">[1]<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span></span><!--[endif]--><span lang="EN-US"><b>X. Cao</b>, X. Wang, J. Wang,  Y. Lian, X. Cheng, and X. Hao*,“Kernel-Free Semi-Blind HSI–MSI Fusion: A Discrete-continuous MAP Formulation via Top-K Angular Matching and Gain Refinement，” <b>IJCV</b>, 2025. (Under Review)</span>
-</p>
-
-
-<p class="MsoNormal" style="margin-bottom:5.0pt;line-height:18.0pt;mso-line-height-rule:
-exactly"><b><span lang="EN-US" style="font-size:14.0pt">2025: <o:p></o:p></span></b></p>
-
-
-<p class="MsoListParagraph" style="margin-top:0cm;margin-right:0cm;margin-bottom: 5.0pt;margin-left:21.0pt;text-indent:-21.0pt;mso-char-indent-count:0;line-height:18.0pt;mso-line-height-rule:exactly;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span lang="EN-US" style="mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">[1]<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span></span><!--[endif]--><span lang="EN-US"><b>X. Cao</b>, X. Wang, X. Dun,  Y. Lian, X. Cheng, and X. Hao*,“Cross-domain-aware Deep Unfolding Transformer for Hyperspectral Image Super-resolution,” <b>Pattern Recognit.</b>, 2025. (<a href="https://doi.org/10.1016/j.patcog.2025.112374">Paper</a>, <a href="https://github.com/Caoxuheng/CDaFormer">Project &amp; code</a>)</span>
-</p>
-
-<p class="MsoListParagraph" style="margin-top:0cm;margin-right:0cm;margin-bottom: 5.0pt;margin-left:21.0pt;text-indent:-21.0pt;mso-char-indent-count:0;line-height:18.0pt;mso-line-height-rule:exactly;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span lang="EN-US" style="mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">[2]<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span></span><!--[endif]--><span lang="EN-US"> J. Song, <b>X. Cao</b>,  G. Wang, J. Zhou, R. Sima, C. Xu, and X. Hao*,“Large-area Low-temperature Vacuum Blackbody System of High Emissivity and Temperature Uniformity,” <b> IEEE Trans. Instrum. and Meas.</b>, 2025. (<a href="https://ieeexplore.ieee.org/abstract/document/10902586">Paper</a>)</span>
-</p>
-
-
-
-<p class="MsoNormal" style="margin-bottom:5.0pt;line-height:18.0pt;mso-line-height-rule:
-exactly"><b><span lang="EN-US" style="font-size:14.0pt">2024: <o:p></o:p></span></b></p>
-
-<p class="MsoListParagraph" style="margin-top:0cm;margin-right:0cm;margin-bottom: 5.0pt;margin-left:21.0pt;text-indent:-21.0pt;mso-char-indent-count:0;line-height:18.0pt;mso-line-height-rule:exactly;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span lang="EN-US" style="mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">[1]<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span></span><!--[endif]--><span lang="EN-US"><b>X. Cao</b>, Y. Lian*, K. Wang, C. Ma and X. Xu,“Unsupervised Hybrid Network of Transformer and CNN for Blind Hyperspectral and Multispectral Image Fusion,” <b>IEEE Trans. Geosci. Remote Sens.</b>, 2024. (<a href="https://ieeexplore.ieee.org/document/10415455">Paper</a> , <a href="https://github.com/Caoxuheng/FeafusFormer">Project &amp; code</a>) 🏆 <b style="color:orangered">Highly Cited Paper</b> </span>
-</p>
-
-<p class="MsoListParagraph" style="margin-top:0cm;margin-right:0cm;margin-bottom: 5.0pt;margin-left:21.0pt;text-indent:-21.0pt;mso-char-indent-count:0;line-height:18.0pt;mso-line-height-rule:exactly;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span lang="EN-US" style="mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">[2]<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span></span><!--[endif]--><span lang="EN-US"><b>X. Cao</b>, Y. Lian*, J. Li, Z. Liu, and K. Wang,“Unsupervised Spectral Reconstruction from RGB images under Two Lighting Conditions,” <b>Opt. Lett.</b>, 2024. (<a href="https://doi.org/10.1364/OL.517007">Paper</a> , <a href="https://github.com/Caoxuheng/DSR-Net">Project &amp; code</a>)</span>
-</p>
-
-
-<p class="MsoListParagraph" style="margin-top:0cm;margin-right:0cm;margin-bottom: 5.0pt;margin-left:21.0pt;text-indent:-21.0pt;mso-char-indent-count:0;line-height:18.0pt;mso-line-height-rule:exactly;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span lang="EN-US" style="mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">[3]<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span></span><!--[endif]--><span lang="EN-US"><b>X. Cao</b>, Y. Lian*, J. Li, K. Wang, and C. Ma,“Unsupervised Multi-level Spatio-spectral Fusion Transformer for Hyperspectral Image Super-resolution,” <b>Opt. Laser Technol.</b>, 2024. (<a href="https://doi.org/10.1016/j.optlastec.2024.111032">Paper</a> , <a href="https://github.com/Caoxuheng/UMSFT">Project &amp; code</a>)</span>
-</p>
-
-
-<p class="MsoNormal" style="margin-bottom:5.0pt;line-height:18.0pt;mso-line-height-rule:
-exactly"><b><span lang="EN-US" style="font-size:14.0pt">2023: <o:p></o:p></span></b></p>
-<p class="MsoListParagraph" style="margin-top:0cm;margin-right:0cm;margin-bottom: 5.0pt;margin-left:21.0pt;text-indent:-21.0pt;mso-char-indent-count:0;line-height:18.0pt;mso-line-height-rule:exactly;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span lang="EN-US" style="mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">[1]<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span></span><!--[endif]--><span lang="EN-US"><b>X. Cao</b>, Y. Lian*, Z. Liu,  J. Wu, W. Zhang, and J. Liu,“Hyperspectral Image Super-resolution via Spectral Matching and Correction,” <b>J. Opt. Soc. Am. A</b>, 2023. (<a href="https://doi.org/10.1364/JOSAA.491595">Paper</a> , Project &amp; code)</span>
-</p>
-
-<p class="MsoListParagraph" style="margin-top:0cm;margin-right:0cm;margin-bottom: 5.0pt;margin-left:21.0pt;text-indent:-21.0pt;mso-char-indent-count:0;line-height:18.0pt;mso-line-height-rule:exactly;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span lang="EN-US" style="mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">[2]<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span></span><!--[endif]--><span lang="EN-US"><b>X. Cao</b>, Y. Lian*, Z. Liu,  H. Zhou, B. Wang, B. Hunag and W. Zhang,“Universal High Spatial Resolution Hyperspectral Imaging using Hybrid-resolution Image Fusion,” <b>Opt. Eng.</b>, 2023. (<a href="https://doi.org/10.1117/1.OE.62.3.033107">Paper</a> , <a href="https://github.com/Caoxuheng/UHIF">Project &amp; code</a>)</span>
-</p>
-
-<p class="MsoNormal" style="margin-bottom:5.0pt;line-height:18.0pt;mso-line-height-rule:
-exactly"><b><span lang="EN-US" style="font-size:14.0pt">2022: <o:p></o:p></span></b></p>
-<p class="MsoListParagraph" style="margin-top:0cm;margin-right:0cm;margin-bottom: 5.0pt;margin-left:21.0pt;text-indent:-21.0pt;mso-char-indent-count:0;line-height:18.0pt;mso-line-height-rule:exactly;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span lang="EN-US" style="mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">[1]<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span></span><!--[endif]--><span lang="EN-US"><b>X. Cao</b>, Y. Lian*, Z. Liu, H. Zhou, B. Wang, W. Zhang, and B. Huang,“Hyperspectral Image Super-resolution via a Multi-stage Scheme without Employing Spatial Degradation,” <b>Opt. Lett.</b>, 2022. (<a href="https://doi.org/10.1364/OL.473020">Paper</a> , <a href="https://github.com/Caoxuheng/HyMS">Project &amp; code</a>)</span>
-</p>
-
-<p class="MsoListParagraph" style="margin-top:0cm;margin-right:0cm;margin-bottom: 5.0pt;margin-left:21.0pt;text-indent:-21.0pt;mso-char-indent-count:0;line-height:18.0pt;mso-line-height-rule:exactly;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span lang="EN-US" style="mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">[2]<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span></span><!--[endif]--><span lang="EN-US"><b>X. Cao</b>, Y. Lian*, Z. Liu, H. Zhou, X. Hu, B. Huang, and W. Zhang,“Hyperspectral Image Super-resolution based on the Transfer of Both Spectra and Multi-level Features,” <b>Opt. Lett.</b>, 2022. (<a href="https://doi.org/10.1364/OL.463160">Paper</a> , Project &amp; code)</span>
-</p>
-
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
