@@ -4,31 +4,387 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Academic homepage of Xuheng Cao — computational imaging, hyperspectral reconstruction, and traceable thermometry." />
-  <meta name="theme-color" content="#050507" />
-  <title>Xuheng Cao · Computational Imaging</title>
-  <link rel="stylesheet" href="style-1.css" />
-  <link rel="stylesheet" href="style-2.css" />
-  <link rel="stylesheet" href="style-3.css" />
+  <meta name="theme-color" content="#5b2b7f" />
+  <title>Xuheng Cao | Academic Homepage</title>
+  <link rel="stylesheet" href="academic.css" />
 </head>
 <body>
-  <div id="site-root" aria-live="polite"></div>
-  <noscript>This academic homepage requires JavaScript to display its interactive content.</noscript>
-  <script>
-    (async () => {
-      const root = document.getElementById("site-root");
-      try {
-        const files = ["content-1.html", "content-2.html", "content-3.html"];
-        const responses = await Promise.all(files.map(file => fetch(file)));
-        if (responses.some(response => !response.ok)) throw new Error("Content request failed");
-        root.outerHTML = (await Promise.all(responses.map(response => response.text()))).join("");
-        const script = document.createElement("script");
-        script.src = "app.js";
-        document.body.appendChild(script);
-      } catch (error) {
-        root.innerHTML = '<main style="max-width:760px;margin:120px auto;padding:24px;font-family:system-ui;color:#f5f5f7"><h1>Xuheng Cao</h1><p>The page could not load its content. Please refresh the browser.</p></main>';
-        console.error(error);
-      }
-    })();
-  </script>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="identity" href="#top" aria-label="Xuheng Cao homepage">
+        <strong>Xuheng Cao</strong>
+        <span>曹栩珩</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#software">Software</a>
+        <a href="#service">Service</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="shell hero-grid">
+        <div class="portrait-wrap">
+          <img class="portrait" src="https://github.com/Caoxuheng/imgs/blob/main/SelfPhoto.jpg?raw=true" alt="Portrait of Xuheng Cao" width="688" height="952" />
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Academic Homepage</p>
+          <h1 id="hero-title">Xuheng Cao <span class="cn">曹栩珩</span></h1>
+          <p class="role">Computational Imaging · Hyperspectral Imaging · Measurement Science</p>
+          <p class="intro">
+            My research connects imaging physics, inverse reconstruction, and precision measurement.
+            I am interested in hyperspectral image fusion, physics-guided learning, computational optics,
+            and SI-traceable infrared thermometry.
+          </p>
+
+          <div class="hero-meta">
+            <div class="meta-item">
+              <strong>Affiliation</strong>
+              <a href="https://ipoe.tongji.edu.cn/en/index.htm">IPOE, Tongji University</a>
+            </div>
+            <div class="meta-item">
+              <strong>Joint Laboratory</strong>
+              <a href="https://en.nim.ac.cn/node/217">National Institute of Metrology, China</a>
+            </div>
+            <div class="meta-item">
+              <strong>Research</strong>
+              Computational imaging and hyperspectral reconstruction
+            </div>
+            <div class="meta-item">
+              <strong>Measurement</strong>
+              Infrared thermometry and radiometric traceability
+            </div>
+          </div>
+
+          <div class="hero-links">
+            <a class="text-button primary" href="#publications">Publications</a>
+            <a class="text-button" href="https://github.com/Caoxuheng">GitHub</a>
+            <a class="text-button" href="mailto:caoxuheng@tongji.edu.cn">Email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-index">01 · Profile</div>
+          <div>
+            <h2 class="section-title">Research across imaging, algorithms, and measurement.</h2>
+            <p class="section-lead">A compact overview of my academic interests and working approach.</p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-label">About</div>
+          <div class="about-copy">
+            <p>
+              I work on computational imaging problems in which the observation model, reconstruction algorithm,
+              and measurement process must remain physically consistent. My current interests span hyperspectral
+              and multispectral image fusion, spectral reconstruction, deep unfolding, computational optics,
+              and infrared temperature measurement.
+            </p>
+            <p>
+              A recurring goal in my work is to connect algorithmic performance with interpretable physical models
+              and experimentally verifiable quantities, rather than treating sensing and reconstruction as separate stages.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="research">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-index">02 · Research</div>
+          <div>
+            <h2 class="section-title">Research directions</h2>
+            <p class="section-lead">Three closely related themes connect optical sensing, inverse reconstruction, and traceable measurement.</p>
+          </div>
+        </div>
+
+        <div class="research-grid">
+          <article class="research-item">
+            <span class="research-number">01</span>
+            <h3>Hyperspectral &amp; Computational Imaging</h3>
+            <p>
+              High-resolution hyperspectral reconstruction, HSI–MSI fusion, spectral reconstruction,
+              semi-blind inverse imaging, and computational imaging systems.
+            </p>
+          </article>
+          <article class="research-item">
+            <span class="research-number">02</span>
+            <h3>Physics-guided Learning</h3>
+            <p>
+              Deep unfolding, model-based neural networks, degradation estimation, inverse problems,
+              and learning methods that retain explicit links to the image formation model.
+            </p>
+          </article>
+          <article class="research-item">
+            <span class="research-number">03</span>
+            <h3>Infrared Metrology &amp; Thermometry</h3>
+            <p>
+              SI-traceable infrared temperature measurement, blackbody calibration,
+              radiometric transfer, and large-area temperature-field reconstruction.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="publications">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-index">03 · Publications</div>
+          <div>
+            <h2 class="section-title">Publications</h2>
+            <p class="section-lead">Peer-reviewed work in computational imaging, hyperspectral reconstruction, optics, and measurement science.</p>
+          </div>
+        </div>
+
+        <div class="publication-tools">
+          <div class="filters" role="group" aria-label="Filter publications by year">
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="2026" aria-pressed="false">2026</button>
+            <button class="filter-button" type="button" data-filter="2025" aria-pressed="false">2025</button>
+            <button class="filter-button" type="button" data-filter="2024" aria-pressed="false">2024</button>
+            <button class="filter-button" type="button" data-filter="2023" aria-pressed="false">2023</button>
+            <button class="filter-button" type="button" data-filter="2022" aria-pressed="false">2022</button>
+          </div>
+          <span class="publication-count" aria-live="polite">11 records</span>
+        </div>
+
+        <div class="publication-list">
+          <article class="publication" data-year="2026">
+            <div class="pub-year">2026</div>
+            <div class="pub-content">
+              <h3>SI-Traceable Infrared Snapshot Thermometry for Full-Field Wafer Temperature Mapping on Electrostatic Chucks</h3>
+              <p class="pub-authors"><strong>X. Cao</strong>, Q. Gao, J. Tao, J. Song, X. Cheng* and X. Hao*</p>
+              <p class="pub-venue">Light: Advanced Manufacturing</p>
+            </div>
+            <div class="pub-actions"><span>Accepted</span></div>
+          </article>
+
+          <article class="publication" data-year="2026">
+            <div class="pub-year">2026</div>
+            <div class="pub-content">
+              <h3>A Discrete–Continuous MAP Formulation for Kernel-Free Semi-Blind Hyperspectral Computational Imaging</h3>
+              <p class="pub-authors"><strong>X. Cao</strong>, J. Wang, Y. Lian, X. Han, X. Wang, and X. Hao*</p>
+              <p class="pub-venue">iOptics</p>
+            </div>
+            <div class="pub-actions">
+              <a href="https://doi.org/10.1016/j.iopt.2026.100036">Paper</a>
+              <a href="https://github.com/Caoxuheng/HIFtool">Code</a>
+            </div>
+          </article>
+
+          <article class="publication" data-year="2025">
+            <div class="pub-year">2025</div>
+            <div class="pub-content">
+              <h3>Cross-domain-aware Deep Unfolding Transformer for Hyperspectral Image Super-resolution</h3>
+              <p class="pub-authors"><strong>X. Cao</strong>, X. Wang, X. Dun, Y. Lian, X. Cheng, and X. Hao*</p>
+              <p class="pub-venue">Pattern Recognition</p>
+            </div>
+            <div class="pub-actions">
+              <a href="https://doi.org/10.1016/j.patcog.2025.112374">Paper</a>
+              <a href="https://github.com/Caoxuheng/CDaFormer">Code</a>
+            </div>
+          </article>
+
+          <article class="publication" data-year="2025">
+            <div class="pub-year">2025</div>
+            <div class="pub-content">
+              <h3>Large-area Low-temperature Vacuum Blackbody System of High Emissivity and Temperature Uniformity</h3>
+              <p class="pub-authors">J. Song<sup>†</sup>, <strong>X. Cao</strong><sup>†</sup>, G. Wang, J. Zhou, R. Sima, C. Xu, and X. Hao*</p>
+              <p class="pub-venue">IEEE Transactions on Instrumentation and Measurement</p>
+            </div>
+            <div class="pub-actions">
+              <a href="https://ieeexplore.ieee.org/abstract/document/10902586">Paper</a>
+            </div>
+          </article>
+
+          <article class="publication" data-year="2024">
+            <div class="pub-year">2024</div>
+            <div class="pub-content">
+              <h3>Unsupervised Hybrid Network of Transformer and CNN for Blind Hyperspectral and Multispectral Image Fusion <span class="badge">Highly Cited</span></h3>
+              <p class="pub-authors"><strong>X. Cao</strong>, Y. Lian*, K. Wang, C. Ma, and X. Xu</p>
+              <p class="pub-venue">IEEE Transactions on Geoscience and Remote Sensing</p>
+            </div>
+            <div class="pub-actions">
+              <a href="https://ieeexplore.ieee.org/document/10415455">Paper</a>
+              <a href="https://github.com/Caoxuheng/FeafusFormer">Code</a>
+            </div>
+          </article>
+
+          <article class="publication" data-year="2024">
+            <div class="pub-year">2024</div>
+            <div class="pub-content">
+              <h3>Unsupervised Spectral Reconstruction from RGB Images under Two Lighting Conditions</h3>
+              <p class="pub-authors"><strong>X. Cao</strong>, Y. Lian*, J. Li, Z. Liu, and K. Wang</p>
+              <p class="pub-venue">Optics Letters</p>
+            </div>
+            <div class="pub-actions">
+              <a href="https://doi.org/10.1364/OL.517007">Paper</a>
+              <a href="https://github.com/Caoxuheng/DSR-Net">Code</a>
+            </div>
+          </article>
+
+          <article class="publication" data-year="2024">
+            <div class="pub-year">2024</div>
+            <div class="pub-content">
+              <h3>Unsupervised Multi-level Spatio-spectral Fusion Transformer for Hyperspectral Image Super-resolution</h3>
+              <p class="pub-authors"><strong>X. Cao</strong>, Y. Lian*, J. Li, K. Wang, and C. Ma</p>
+              <p class="pub-venue">Optics &amp; Laser Technology</p>
+            </div>
+            <div class="pub-actions">
+              <a href="https://doi.org/10.1016/j.optlastec.2024.111032">Paper</a>
+              <a href="https://github.com/Caoxuheng/UMSFT">Code</a>
+            </div>
+          </article>
+
+          <article class="publication" data-year="2023">
+            <div class="pub-year">2023</div>
+            <div class="pub-content">
+              <h3>Hyperspectral Image Super-resolution via Spectral Matching and Correction</h3>
+              <p class="pub-authors"><strong>X. Cao</strong>, Y. Lian*, Z. Liu, J. Wu, W. Zhang, and J. Liu</p>
+              <p class="pub-venue">Journal of the Optical Society of America A</p>
+            </div>
+            <div class="pub-actions">
+              <a href="https://doi.org/10.1364/JOSAA.491595">Paper</a>
+            </div>
+          </article>
+
+          <article class="publication" data-year="2023">
+            <div class="pub-year">2023</div>
+            <div class="pub-content">
+              <h3>Universal High Spatial Resolution Hyperspectral Imaging using Hybrid-resolution Image Fusion</h3>
+              <p class="pub-authors"><strong>X. Cao</strong>, Y. Lian*, Z. Liu, H. Zhou, B. Wang, B. Huang, and W. Zhang</p>
+              <p class="pub-venue">Optical Engineering</p>
+            </div>
+            <div class="pub-actions">
+              <a href="https://doi.org/10.1117/1.OE.62.3.033107">Paper</a>
+              <a href="https://github.com/Caoxuheng/UHIF">Code</a>
+            </div>
+          </article>
+
+          <article class="publication" data-year="2022">
+            <div class="pub-year">2022</div>
+            <div class="pub-content">
+              <h3>Hyperspectral Image Super-resolution via a Multi-stage Scheme without Employing Spatial Degradation</h3>
+              <p class="pub-authors"><strong>X. Cao</strong>, Y. Lian*, Z. Liu, H. Zhou, B. Wang, W. Zhang, and B. Huang</p>
+              <p class="pub-venue">Optics Letters</p>
+            </div>
+            <div class="pub-actions">
+              <a href="https://doi.org/10.1364/OL.473020">Paper</a>
+              <a href="https://github.com/Caoxuheng/HyMS">Code</a>
+            </div>
+          </article>
+
+          <article class="publication" data-year="2022">
+            <div class="pub-year">2022</div>
+            <div class="pub-content">
+              <h3>Hyperspectral Image Super-resolution based on the Transfer of Both Spectra and Multi-level Features</h3>
+              <p class="pub-authors"><strong>X. Cao</strong>, Y. Lian*, Z. Liu, H. Zhou, X. Hu, B. Huang, and W. Zhang</p>
+              <p class="pub-venue">Optics Letters</p>
+            </div>
+            <div class="pub-actions">
+              <a href="https://doi.org/10.1364/OL.463160">Paper</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="software">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-index">04 · Software</div>
+          <div>
+            <h2 class="section-title">Open-source software</h2>
+            <p class="section-lead">Research code and reusable software developed alongside my work.</p>
+          </div>
+        </div>
+
+        <div class="software-grid">
+          <a class="software-card" href="https://pepy.tech/project/imgvision">
+            <p class="small">Python package</p>
+            <h3>Imgvision</h3>
+            <p>Open-source image-processing package with public release and download statistics.</p>
+            <img src="https://static.pepy.tech/badge/imgvision" alt="Imgvision download count" loading="lazy" />
+          </a>
+          <a class="software-card" href="https://pepy.tech/project/paddleiv">
+            <p class="small">Python package</p>
+            <h3>paddleiv</h3>
+            <p>Open-source research software with public release and download statistics.</p>
+            <img src="https://static.pepy.tech/badge/paddleiv" alt="paddleiv download count" loading="lazy" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="service">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-index">05 · Service</div>
+          <div>
+            <h2 class="section-title">Academic service</h2>
+            <p class="section-lead">Peer-review service across imaging, vision, optics, remote sensing, and intelligent systems.</p>
+          </div>
+        </div>
+
+        <div class="service">
+          <div class="about-label">Reviewing</div>
+          <div class="venue-list" aria-label="Peer review venues">
+            <span>Optica</span>
+            <span>IEEE GRSM</span>
+            <span>IEEE PAMI</span>
+            <span>ISPRS Journal of Photogrammetry and Remote Sensing</span>
+            <span>IEEE TIP</span>
+            <span>IEEE TII</span>
+            <span>IEEE TCSVT</span>
+            <span>IEEE TCYB</span>
+            <span>International Journal of Computer Vision</span>
+            <span>Information Fusion</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-index">06 · Contact</div>
+          <div>
+            <h2 class="section-title">Research discussion and collaboration</h2>
+            <p class="section-lead">For research, software, and publication correspondence, please contact me by email.</p>
+            <div class="contact-links">
+              <a href="mailto:caoxuheng@tongji.edu.cn">caoxuheng@tongji.edu.cn</a>
+              <a href="mailto:caoxuhengcn@gmail.com">caoxuhengcn@gmail.com</a>
+              <a href="https://github.com/Caoxuheng">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>© <span id="year">2026</span> Xuheng Cao</span>
+      <div class="footer-links">
+        <a href="#top">Back to top</a>
+        <a href="mailto:caoxuheng@tongji.edu.cn">Email</a>
+        <a href="https://github.com/Caoxuheng">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="academic.js"></script>
 </body>
 </html>
